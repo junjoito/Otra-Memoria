@@ -2,7 +2,7 @@ body {
 	cursor: url(../img/mira.png), auto !important;
 	margin: 0;
 	background-color: #161616;
-	color: #fffbfb;	
+	color: #fdfdfd;	
 	font-family: Monospace;
 	font-size: 13px;
 	line-height: 24px;
@@ -29,6 +29,7 @@ button {
 	top: 0px;
 	width: 100%;
 	padding: 10px;
+	background: rgba(16,16,16,0.2);
 	box-sizing: border-box;
 	text-align: center;
 	-moz-user-select: none;
