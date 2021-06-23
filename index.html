@@ -7,7 +7,10 @@
 		<link type="text/css" rel="stylesheet" href="css/main.css">
 	</head>
 	<body>
+		<div class="cursor"></div>
+        <div class="cursor-follower"></div>
 		<div id="overlay">
+			<div class="item"></div>
 			<button id="startButton">Comenzar Viaje</button>
 		</div>
 		<div id="info">
@@ -17,7 +20,44 @@
 			navega usando las teclas WASD / flechas / mouse
 			<br>
 		</div>
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/TweenMax.min.js"></script>
+		<script>
+			var cursor = $(".cursor"),
+                follower = $(".cursor-follower");
 
+            var posX = 0,
+                posY = 0,
+                mouseX = 0,
+                mouseY = 0;
+
+            TweenMax.to({}, 0.016, {
+                repeat: -1,
+                onRepeat: function() {
+                    posX += (mouseX - posX) / 9;
+                    posY += (mouseY - posY) / 9;
+
+                    TweenMax.set(follower, {
+                        css: {
+                            left: posX - 20,
+                            top: posY - 20
+                        }
+                    });
+
+                    TweenMax.set(cursor, {
+                        css: {
+                            left: mouseX,
+                            top: mouseY
+                        }
+                    });
+                }
+            });
+
+            $(document).on("mousemove", function(e) {
+                mouseX = e.pageX;
+                mouseY = e.pageY;
+            });
+		</script>
 		<script type="module">
 
 			import * as THREE from './js/three.module.js';
@@ -51,16 +91,16 @@
 				camera.add( listener );
 
 				scene = new THREE.Scene();
-				scene.fog = new THREE.FogExp2( 0x161616, 0.0005 );
+				//scene.fog = new THREE.FogExp2( 0x161616, 0.0005 );
 
 				const loader = new THREE.TextureLoader();
         		loader.load("img/backgraund.jpg",function(texture){
             		scene.background = texture;
         		});
 
-				light = new THREE.DirectionalLight( 0x161616 );
-				light.position.set( 0, 0.5, 1 ).normalize();
-				scene.add( light );
+				//light = new THREE.DirectionalLight( 0x161616 );
+				//light.position.set( 0, 0.5, 1 ).normalize();
+				//scene.add( light );
 
 				const sphere = new THREE.BoxGeometry( 60, 60, 60 );
 
@@ -283,25 +323,11 @@
 				controls.lookVertical = false;
 
 				//
-				Array(200).fill().forEach(addStar);
 
 				window.addEventListener( 'resize', onWindowResize );
 				
 				animate();
 
-			}
-
-			function addStar() {
-			  const geometry = new THREE.BoxGeometry(1, 1, 1);
-			  const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
-			  const star = new THREE.Mesh(geometry, material);
-
-			  const [x, y, z] = Array(3)
-			    .fill()
-			    .map(() => THREE.MathUtils.randFloatSpread(500));
-
-			  star.position.set(x, y, z);
-			  scene.add(star);
 			}
 
 			function onWindowResize() {
