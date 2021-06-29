@@ -21,35 +21,9 @@ body {
     pointer-events: none;
     transform: scale(0.8);
 }
-
-.cursor::before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    background-image: url("lavatile.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 100%;
-    opacity: 0;
-}
-
-.cursor.active {
-    opacity: 1;
-    transform: scale(12);
-}
-
-.cursor.active::before {
-    opacity: 1;
-}
-
 .cursor-follower {
     position: absolute;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.6);
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -60,12 +34,6 @@ body {
     pointer-events: none;
     transform: translate(4px, 4px);
 }
-
-.cursor-follower.active {
-    opacity: 0.3;
-    transform: scale(0);
-}
-
 a {
 	color: #4bedc2;
 	text-decoration: none;
