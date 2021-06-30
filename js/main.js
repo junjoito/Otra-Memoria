@@ -60,7 +60,7 @@ function init() {
 
 	const imagePrefix2 = "img/scenario_02/interior-casa_";
 	const directions2  = ["ft", "bk", "up", "dn", "rt", "lf"];
-	const imageSuffix2 = ".jpg";
+	const imageSuffix2 = ".png";
 
 	const materialArray2 = [];
 	for (var i = 0; i < 6; i++)
