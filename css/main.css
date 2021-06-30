@@ -34,6 +34,7 @@ body {
     pointer-events: none;
     transform: translate(4px, 4px);
 }
+
 a {
 	color: #4bedc2;
 	text-decoration: none;

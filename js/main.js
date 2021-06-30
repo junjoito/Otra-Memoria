@@ -103,10 +103,10 @@ function init() {
 	scene.add( moon);
 
 	const sound1 = new THREE.PositionalAudio( listener );
-	audioLoader.load( '', function ( buffer ) {
+	audioLoader.load( 'sounds/Una fiesta en el pueblo.mp3', function ( buffer ) {
 
 		sound1.setBuffer( buffer );
-		sound1.setVolume(2.5);
+		sound1.setVolume(2);
 		sound1.setRefDistance( 20 );
 		sound1.play();
 
