@@ -103,9 +103,10 @@ function init() {
 	scene.add( moon);
 
 	const sound1 = new THREE.PositionalAudio( listener );
-	audioLoader.load( 'sounds/Una fiesta en el pueblo.mp3', function ( buffer ) {
+	audioLoader.load( 'sounds/Misa.mp3', function ( buffer ) {
 
 		sound1.setBuffer( buffer );
+		sound1.setLoop( true );
 		sound1.setVolume(2);
 		sound1.setRefDistance( 20 );
 		sound1.play();
@@ -121,6 +122,7 @@ function init() {
 	audioLoader.load( '', function ( buffer ) {
 
 		sound2.setBuffer( buffer );
+		sound2.setLoop( true );
 		sound2.setRefDistance( 20 );
 		sound2.setVolume(2.5);
 		sound2.play();
@@ -133,9 +135,10 @@ function init() {
 	scene.add( cube3 );
 
 	const sound3 = new THREE.PositionalAudio( listener );
-	audioLoader.load( '', function ( buffer ) {
+	audioLoader.load( 'sounds/Llamado.mp3', function ( buffer ) {
 
 		sound3.setBuffer( buffer );
+		sound3.setLoop( true );
 		sound3.setRefDistance( 20 );
 		sound3.setVolume(2.5);
 		sound3.play();
