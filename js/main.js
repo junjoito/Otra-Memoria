@@ -20,9 +20,6 @@ function init() {
     const overlay = document.getElementById( 'overlay' );
 	overlay.remove();
 
-	const info = document.getElementById( 'info' );
-	info.remove();
-
 	camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
 	camera.position.set( 0, 35, 0 );
 
@@ -101,16 +98,13 @@ function init() {
 	const moon= new THREE.Mesh( orbe, moonMaterial);
 	moon.position.set( - 250, 30, 0 );
 	scene.add( moon);
-
 	const sound1 = new THREE.PositionalAudio( listener );
 	audioLoader.load( 'sounds/Misa.mp3', function ( buffer ) {
-
 		sound1.setBuffer( buffer );
 		sound1.setLoop( true );
 		sound1.setVolume(2);
-		sound1.setRefDistance( 20 );
-		sound1.play();
-
+		sound1.setRefDistance( 20 )
+		sound1.play();	
 	} );
 	cube1.add( sound1 );
 			
@@ -175,7 +169,7 @@ function init() {
 
 	// Helper o Graund
 
-	const helper = new THREE.GridHelper( 1000, 40, 0xffffff, 0xffffff );
+	const helper = new THREE.GridHelper( 1000, 40, 0xc5c0b2, 0xc5c0b2 );
 	helper.position.y = 0.1;
 	scene.add( helper );
 
@@ -188,8 +182,8 @@ function init() {
 
 	controls = new FirstPersonControls( camera, renderer.domElement );
 
-	controls.movementSpeed = 40;
-	controls.lookSpeed = 0.04;
+	controls.movementSpeed = 70;
+	controls.lookSpeed = 0.05;
 	controls.noFly = true;
 	controls.lookVertical = false;
 
@@ -215,14 +209,14 @@ function onWindowResize() {
 function animate() {
 
 	requestAnimationFrame( animate );
-	cube1.rotation.y += 0.009;
-	cube2.rotation.y += 0.009;
+	cube1.rotation.y += 0.001;
+	cube2.rotation.y += 0.001;
 				
 	control.rotation.x += 0.01;
 	control.rotation.y += 0.01;
 	control.rotation.z += 0.01;
 
-	cube3.rotation.y += 0.009;
+	cube3.rotation.y += 0.001;
 	render();
 
 }

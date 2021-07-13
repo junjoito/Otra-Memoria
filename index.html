@@ -9,7 +9,7 @@
 	<body>
 		<div class="cursor"></div>
         <div class="cursor-follower"></div>
-		<div id="overlay">
+		<!--<div id="overlay">
 			<div class="item"></div>
 			<button id="startButton">Comenzar Viaje</button>
 		</div>
@@ -19,10 +19,52 @@
 			<br>
 			navega usando las teclas WASD / flechas / mouse
 			<br>
+		</div>-->
+		<div class="wrapper" id="overlay">
+			<div class="site-logo">la otra memoria</div>
+			<div class="navbar">
+				<div class="site-info">leyendas / 3D</div>
+				<div class="site-menu">
+					<div class="menu-item">acerca de</div>
+					<div class="menu-item">controles</div>
+					<div class="menu-item">equipo</div>
+				</div>
+			</div>
+			<div class="header">
+				<div class="header-left">
+					Yei Xinachtli<br /><span>Yei Tlahtolli</span>					
+				</div>
+				<div class="link"><button id="startButton">Comenzar Viaje</button></div>
+				<div class="header-right">/elige tu camino</div>
+			</div>
+			<div class="container">
+				<div class="container-items">
+					<div class="container-img-wrap">
+						<div class="container-img"></div>
+					</div>
+					<div class="item">
+						<a href="#" class="container-item" data-img="img/scenario_01/iglesia_ft.jpg">
+							<h3>1</h3>
+						</a>
+					</div>
+					<div class="item">
+						<a href="#" class="container-item" data-img="img/scenario_05/ext-julia_ft.png">
+							<h3>2</h3>
+						</a>
+					</div>
+					<div class="item">
+						<a href="#" class="container-item" data-img="img/scenario_03/barranco_ft.jpg">
+							<h3>3</h3>
+						</a>
+					</div>
+				</div>
+			</div>
 		</div>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/TweenMax.min.js"></script>
+		<script src="js/gsap.min.js"></script>
 		<script src="js/cursor.js"></script>
+		<script src="js/select.js"></script>
 		<script type="module" src="js/main.js"></script>
 	</body>
 </html>
