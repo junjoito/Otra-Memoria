@@ -2,13 +2,11 @@ import * as THREE from './THREEJS/three.module.js';
 
 import { FirstPersonControls } from './THREEJS/FirstPersonControls.js';
 
-let camera, orbit, controls, scene, renderer, light;
+let camera, controls, scene, renderer;
 
-let cube1, cube2, cube3;
+let cube1, cube2, cube3, cube4, cube5;
 
 let control;
-
-let analyser1, analyser2, analyser3;
 
 const clock = new THREE.Clock();
 
@@ -27,19 +25,15 @@ function init() {
 	camera.add( listener );
 
 	scene = new THREE.Scene();
-	//scene.fog = new THREE.FogExp2( 0x161616, 0.0005 );
+	//scene.background = new THREE.Color( 0xcce0ff );
+	scene.background = new THREE.Color(0xc5c0b2);
 
-	const loader = new THREE.TextureLoader();
-    loader.load("img/backgraund.jpg",function(texture){
-        scene.background = texture;
-    });
+	/*const loader = new THREE.TextureLoader();
+    loader.load("img/textures/backgraund.jpg",function(texture){
+      scene.background = texture;
+    });*/
 
-				//light = new THREE.DirectionalLight( 0x161616 );
-				//light.position.set( 0, 0.5, 1 ).normalize();
-				//scene.add( light );
-
-	const sphere = new THREE.BoxGeometry( 60, 60, 60 );
-
+	const sphere = new THREE.BoxGeometry( 80, 80, 80 );
 	const orbe = new THREE.SphereGeometry(2, 16, 16);
 	//Texturas de cada geometria
 
@@ -79,13 +73,36 @@ function init() {
 	}));
 	const skyMaterial3 = new THREE.MeshFaceMaterial( materialArray3 );
 
+	const imagePrefix4 = "img/scenario_04/exterior-casa_";
+	const directions4  = ["ft", "bk", "up", "dn", "rt", "lf"];
+	const imageSuffix4 = ".png";
+
+	const materialArray4 = [];
+	for (var i = 0; i < 6; i++)
+		materialArray4.push( new THREE.MeshBasicMaterial({
+		map: THREE.ImageUtils.loadTexture( imagePrefix4 + directions4[i] + imageSuffix4 ),
+		side: THREE.BackSide
+	}));
+	const skyMaterial4 = new THREE.MeshFaceMaterial( materialArray4 );
+
+	const imagePrefix5 = "img/scenario_05/ext-julia_";
+	const directions5  = ["ft", "bk", "up", "dn", "rt", "lf"];
+	const imageSuffix5 = ".png";
+
+	const materialArray5 = [];
+	for (var i = 0; i < 6; i++)
+		materialArray5.push( new THREE.MeshBasicMaterial({
+		map: THREE.ImageUtils.loadTexture( imagePrefix5 + directions5[i] + imageSuffix5 ),
+		side: THREE.BackSide
+	}));
+	const skyMaterial5 = new THREE.MeshFaceMaterial( materialArray5 );
 
 	const logoTexture = new THREE.TextureLoader().load('img/logo/La Otra Memoria.png');
 		
-	const moonTexture = new THREE.TextureLoader().load('img/moon.jpg');
+	const moonTexture = new THREE.TextureLoader().load('img/textures/moon.jpg');
 	const moonMaterial = new THREE.MeshBasicMaterial({ map: moonTexture });
 	// Efectos de Sonido para cada geometria
-	control = new THREE.Mesh(new THREE.BoxGeometry(5, 5, 5), new THREE.MeshBasicMaterial({ map: logoTexture }));
+	control = new THREE.Mesh(new THREE.BoxGeometry(5, 5, 5), new THREE.MeshBasicMaterial({ map: logoTexture, side: THREE.DoubleSide }));
 	control.position.set( 0, 40, - 50 );
 	scene.add( control );
 
@@ -95,21 +112,21 @@ function init() {
 	cube1.position.set( - 250, 40, 0 );
 	scene.add( cube1 );
 
-	const moon= new THREE.Mesh( orbe, moonMaterial);
-	moon.position.set( - 250, 30, 0 );
-	scene.add( moon);
+	/*const moon= new THREE.Mesh( orbe, moonMaterial);
+	moon.position.set( - 350, 40, 0 );
+	scene.add( moon);*/
 	const sound1 = new THREE.PositionalAudio( listener );
 	audioLoader.load( 'sounds/Misa.mp3', function ( buffer ) {
 		sound1.setBuffer( buffer );
 		sound1.setLoop( true );
-		sound1.setVolume(2);
-		sound1.setRefDistance( 20 )
+		sound1.setVolume( 1.5 );
+		sound1.setRefDistance( 5 )
 		sound1.play();	
 	} );
 	cube1.add( sound1 );
 			
 	cube2 = new THREE.Mesh( sphere, skyMaterial2 );
-	cube2.position.set( 0, 40, - 250 );				
+	cube2.position.set( 0, 40, - 350 );
 	scene.add( cube2 );
 
 	const sound2 = new THREE.PositionalAudio( listener );
@@ -117,15 +134,15 @@ function init() {
 
 		sound2.setBuffer( buffer );
 		sound2.setLoop( true );
-		sound2.setRefDistance( 20 );
-		sound2.setVolume(2.5);
+		sound2.setRefDistance( 5 );
+		sound2.setVolume(1.5);
 		sound2.play();
 
 	} );
 	cube2.add( sound2 );
 
 	cube3 = new THREE.Mesh( sphere, skyMaterial3 );
-	cube3.position.set( 250, 40, 0 );
+	cube3.position.set( 350, 40, 0 );
 	scene.add( cube3 );
 
 	const sound3 = new THREE.PositionalAudio( listener );
@@ -133,27 +150,29 @@ function init() {
 
 		sound3.setBuffer( buffer );
 		sound3.setLoop( true );
-		sound3.setRefDistance( 20 );
-		sound3.setVolume(2.5);
+		sound3.setRefDistance( 5 );
+		sound3.setVolume(1.5);
 		sound3.play();
 
 	} );
 	cube3.add( sound3 );
-				/*const sound3 = new THREE.PositionalAudio( listener );
-				const oscillator = listener.context.createOscillator();
-				oscillator.type = 'sine';
-				oscillator.frequency.setValueAtTime( 144, sound3.context.currentTime );
-				oscillator.start( 0 );
-				sound3.setNodeSource( oscillator );
-				sound3.setRefDistance( 20 );
-				sound3.setVolume( 0.5 );
-				mesh3.add( sound3 );*/
 
-	// Analizadores
+	cube4 = new THREE.Mesh( sphere, skyMaterial4 );
+	cube4.position.set( 0, 40, 350 );
+	scene.add( cube4 );
 
-	analyser1 = new THREE.AudioAnalyser( sound1, 32 );
-	analyser2 = new THREE.AudioAnalyser( sound2, 32 );
-	analyser3 = new THREE.AudioAnalyser( sound3, 32 );
+	cube5 = new THREE.Mesh( sphere, skyMaterial5 );
+	cube5.position.set( - 350, 40, 350 );
+	scene.add( cube5 );
+	/*const sound3 = new THREE.PositionalAudio( listener );
+	const oscillator = listener.context.createOscillator();
+	oscillator.type = 'sine';
+	oscillator.frequency.setValueAtTime( 144, sound3.context.currentTime );
+	oscillator.start( 0 );
+	sound3.setNodeSource( oscillator );
+	sound3.setRefDistance( 20 );
+	sound3.setVolume( 0.5 );
+	mesh3.add( sound3 );*/
 
 	// Sonido de Ambientacion
 
@@ -167,11 +186,16 @@ function init() {
 
 	} );
 
-	// Helper o Graund
-
-	const helper = new THREE.GridHelper( 1000, 40, 0xc5c0b2, 0xc5c0b2 );
-	helper.position.y = 0.1;
-	scene.add( helper );
+	const floorTexture = new THREE.ImageUtils.loadTexture( 'img/textures/floor.jpg' );
+	floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
+	floorTexture.repeat.set( 10, 10 );
+	// DoubleSide: render texture on both sides of mesh
+	const floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
+	const floorGeometry = new THREE.PlaneGeometry(1000, 1000, 1, 1);
+	const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+	floor.position.y = -0.5;
+	floor.rotation.x = Math.PI / 2;
+	scene.add(floor);
 
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
 	renderer.setPixelRatio( window.devicePixelRatio );
@@ -185,7 +209,8 @@ function init() {
 	controls.movementSpeed = 70;
 	controls.lookSpeed = 0.05;
 	controls.noFly = true;
-	controls.lookVertical = false;
+	//controls.lookVertical = false;
+	controls.lookVertical = true;
 
 	//
 
@@ -217,14 +242,15 @@ function animate() {
 	control.rotation.z += 0.01;
 
 	cube3.rotation.y += 0.001;
+	cube4.rotation.y += 0.001;
+	cube5.rotation.y += 0.001;
 	render();
 
 }
 
 function render() {
 
-	const delta = clock.getDelta();
-	controls.update( delta );
+	controls.update( clock.getDelta() );
 	renderer.render( scene, camera );
 
 }
