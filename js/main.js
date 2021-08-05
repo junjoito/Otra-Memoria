@@ -16,9 +16,14 @@ startButton.addEventListener( 'click', firstWorld );
 const startButton2 = document.getElementById( 'startButton2' );
 startButton2.addEventListener( 'click', secondWorld );
 
+const closeButton = document.getElementById('closeButton')
+closeButton.addEventListener('click', _ =>{
+	location.reload();
+})
+
 function firstWorld() {
     const overlay = document.getElementById( 'overlay' );
-	overlay.remove();
+	overlay.remove();	
 
 	camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
 	camera.position.set( 0, 35, 0 );
@@ -36,9 +41,9 @@ function firstWorld() {
 	const sphere = new THREE.BoxGeometry( 60, 60, 60 );
 	//Texturas de cada geometria
 
-	const imagePrefix = "img/scenario_01/iglesia_";
-	const directions  = ["ft", "bk", "up", "dn", "rt", "lf"];
-	const imageSuffix = ".jpg";
+	const imagePrefix = "img/scenario_01/iglesia_";	
+	const directions  = ["rt", "lf", "up", "dn", "bk", "ft"];
+	const imageSuffix = ".png";
 
 	const materialArray = [];
 	for (var i = 0; i < 6; i++)
@@ -48,8 +53,8 @@ function firstWorld() {
 	}));
 	const skyMaterial = new THREE.MeshFaceMaterial( materialArray );
 
-	const imagePrefix2 = "img/scenario_02/interior-casa_";
-	const directions2  = ["ft", "bk", "up", "dn", "rt", "lf"];
+	const imagePrefix2 = "img/scenario_02/ext-julia_";	
+	const directions2  = ["bk", "ft", "up", "dn", "lf", "rt"];
 	const imageSuffix2 = ".png";
 
 	const materialArray2 = [];
@@ -60,9 +65,9 @@ function firstWorld() {
 	}));
 	const skyMaterial2 = new THREE.MeshFaceMaterial( materialArray2 );
 
-	const imagePrefix3 = "img/scenario_03/barranco_";
-	const directions3  = ["ft", "bk", "up", "dn", "rt", "lf"];
-	const imageSuffix3 = ".jpg";
+	const imagePrefix3 = "img/scenario_03/interior-casa_";	
+	const directions3  = ["bk", "ft", "up", "dn", "lf", "rt"];
+	const imageSuffix3 = ".png";
 
 	const materialArray3 = [];
 	for (var i = 0; i < 6; i++)
@@ -73,7 +78,7 @@ function firstWorld() {
 	const skyMaterial3 = new THREE.MeshFaceMaterial( materialArray3 );
 
 	const imagePrefix4 = "img/scenario_04/exterior-casa_";
-	const directions4  = ["ft", "bk", "up", "dn", "rt", "lf"];
+	const directions4  = ["bk", "ft", "up", "dn", "lf", "rt"];
 	const imageSuffix4 = ".png";
 
 	const materialArray4 = [];
@@ -84,9 +89,9 @@ function firstWorld() {
 	}));
 	const skyMaterial4 = new THREE.MeshFaceMaterial( materialArray4 );
 
-	const imagePrefix5 = "img/scenario_05/ext-julia_";
-	const directions5  = ["ft", "bk", "up", "dn", "rt", "lf"];
-	const imageSuffix5 = ".png";
+	const imagePrefix5 = "img/scenario_05/barranco_";
+	const directions5  = ["bk", "ft", "up", "dn", "lf", "rt"];
+	const imageSuffix5 = ".jpg";
 
 	const materialArray5 = [];
 	for (var i = 0; i < 6; i++)
@@ -97,9 +102,7 @@ function firstWorld() {
 	const skyMaterial5 = new THREE.MeshFaceMaterial( materialArray5 );
 
 	const logoTexture = new THREE.TextureLoader().load('img/logo/La Otra Memoria.png');
-		
-	const moonTexture = new THREE.TextureLoader().load('img/textures/moon.jpg');
-	const moonMaterial = new THREE.MeshBasicMaterial({ map: moonTexture });
+
 	// Efectos de Sonido para cada geometria
 	control = new THREE.Mesh(new THREE.BoxGeometry(5, 5, 5), new THREE.MeshBasicMaterial({ map: logoTexture, side: THREE.DoubleSide }));
 	control.position.set( 0, 40, - 50 );
@@ -107,93 +110,98 @@ function firstWorld() {
 
 	const audioLoader = new THREE.AudioLoader();
 
-	cube1 = new THREE.Mesh( sphere, skyMaterial );
-	cube1.position.set( - 450, 35, 0 );
+	cube1 = new THREE.Mesh( sphere, skyMaterial );	
+	cube1.position.set( 0, 35, - 450 );	
 	scene.add( cube1 );
 	
 	const sound1 = new THREE.PositionalAudio( listener );
-	audioLoader.load( 'sounds/Misa.mp3', function ( buffer ) {
+	audioLoader.load( 'sounds/Una fiesta en el pueblo.mp3', function ( buffer ) {
 		sound1.setBuffer( buffer );
 		sound1.setLoop( true );
 		sound1.setVolume( 1.5 );
-		sound1.setRefDistance( 5 )
+		sound1.setRefDistance( 20 )
 		sound1.play();	
 	} );
 	cube1.add( sound1 );
 			
-	cube2 = new THREE.Mesh( sphere, skyMaterial2 );
-	cube2.position.set( 0, 35, - 450 );
+	cube2 = new THREE.Mesh( sphere, skyMaterial2 );		
+	cube2.position.set( 450, 35, -450 );
 	scene.add( cube2 );
 
 	const sound2 = new THREE.PositionalAudio( listener );
-	audioLoader.load( '', function ( buffer ) {
+	audioLoader.load( 'sounds/Aves.mp3', function ( buffer ) {
 
 		sound2.setBuffer( buffer );
 		sound2.setLoop( true );
 		sound2.setRefDistance( 5 );
-		sound2.setVolume(1.5);
+		sound2.setVolume(1);
 		sound2.play();
 
 	} );
 	cube2.add( sound2 );
 
-	cube3 = new THREE.Mesh( sphere, skyMaterial3 );
-	cube3.position.set( 450, 35, 0 );
-	scene.add( cube3 );
+	cube3 = new THREE.Mesh( sphere, skyMaterial3 );		
+	cube3.position.set( 450, 35,  450 );
+	scene.add( cube3 );	
 
 	const sound3 = new THREE.PositionalAudio( listener );
-	audioLoader.load( 'sounds/Llamado.mp3', function ( buffer ) {
+	audioLoader.load( 'sounds/Interior_Casa.mp3', function ( buffer ) {
 
 		sound3.setBuffer( buffer );
 		sound3.setLoop( true );
 		sound3.setRefDistance( 5 );
-		sound3.setVolume(1.5);
+		sound3.setVolume(1);
 		sound3.play();
 
 	} );
 	cube3.add( sound3 );
 
 	cube4 = new THREE.Mesh( sphere, skyMaterial4 );
-	cube4.position.set( 450, 35, - 450 );
+	cube4.position.set( - 450, 35,  450 );
 	scene.add( cube4 );
 
-	cube5 = new THREE.Mesh( sphere, skyMaterial5 );
-	cube5.position.set( 0, 35, 450 );
-	scene.add( cube5 );
-	/*const sound3 = new THREE.PositionalAudio( listener );
-	const oscillator = listener.context.createOscillator();
-	oscillator.type = 'sine';
-	oscillator.frequency.setValueAtTime( 144, sound3.context.currentTime );
-	oscillator.start( 0 );
-	sound3.setNodeSource( oscillator );
-	sound3.setRefDistance( 20 );
-	sound3.setVolume( 0.5 );
-	mesh3.add( sound3 );*/
-
-	// Sonido de Ambientacion
-
-	const sound4 = new THREE.Audio( listener );
-	audioLoader.load( 'sounds/Project_Utopia.ogg', function ( buffer ) {
+	const sound4 = new THREE.PositionalAudio( listener );
+	audioLoader.load( 'sounds/Naturaleza.mp3', function ( buffer ) {
 
 		sound4.setBuffer( buffer );
 		sound4.setLoop( true );
-		sound4.setVolume( 1 );
+		sound4.setRefDistance( 5 );
+		sound4.setVolume(1);
 		sound4.play();
 
 	} );
+	cube4.add( sound4 );
 
-	/*const floorTexture = new THREE.ImageUtils.loadTexture( 'img/textures/floor.jpg' );
-	floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
-	floorTexture.repeat.set( 10, 10 );
-	// DoubleSide: render texture on both sides of mesh
-	const floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
-	const floorGeometry = new THREE.PlaneGeometry(1000, 1000, 1, 1);
-	const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-	floor.position.y = -0.5;
-	floor.rotation.x = Math.PI / 2;
-	scene.add(floor);*/
+	cube5 = new THREE.Mesh( sphere, skyMaterial5 );	
+	cube5.position.set( - 450, 35, - 450 );
+	scene.add( cube5 );
 
-	const helper = new THREE.GridHelper( 1000, 40, 0xc5c0b2, 0xc5c0b2 );
+	const sound5 = new THREE.PositionalAudio( listener );
+	audioLoader.load( 'sounds/Llamado.mp3', function ( buffer ) {
+
+		sound5.setBuffer( buffer );
+		sound5.setLoop( true );
+		sound5.setRefDistance( 5 );
+		sound5.setVolume(1);
+		sound5.play();
+
+	} );
+	cube5.add( sound5 );
+	
+
+	// Sonido de Ambientacion
+
+	const sound6 = new THREE.Audio( listener );
+	audioLoader.load( 'sounds/Instrucciones.wav', function ( buffer ) {
+
+		sound6.setBuffer( buffer );
+		sound6.setLoop( false );
+		sound6.setVolume( 0.5 );
+		sound6.play();
+
+	} );
+
+	const helper = new THREE.GridHelper( 1000, 20, 0xc5c0b2, 0xc5c0b2 );
 	helper.position.y = 0.1;
 	scene.add( helper );
 
@@ -208,6 +216,8 @@ function firstWorld() {
 	controls.movementSpeed = 150;
 	controls.lookSpeed = 0.1;
 	controls.lookVertical = false;
+	
+
 
 	window.addEventListener( 'resize', onWindowResize );
 	animate();
@@ -371,7 +381,7 @@ function secondWorld() {
 
 	} );
 
-	const helper = new THREE.GridHelper( 1000, 20, 0xbe4554, 0xbe4554 );
+	const helper = new THREE.GridHelper( 1000, 10, 0xbe4554, 0xbe4554 );
 	helper.position.y = 0.1;
 	scene.add( helper );
 
@@ -385,7 +395,8 @@ function secondWorld() {
 	controls = new FirstPersonControls( camera, renderer.domElement );
 	controls.movementSpeed = 150;
 	controls.lookSpeed = 0.1;
-	controls.lookVertical = false;
+	controls.lookVertical = false;	
+
 
 	window.addEventListener( 'resize', onWindowResize );
 	animate();
