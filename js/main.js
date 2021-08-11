@@ -119,7 +119,7 @@ function firstWorld() {
 		sound1.setBuffer( buffer );
 		sound1.setLoop( true );
 		sound1.setVolume( 1.5 );
-		sound1.setRefDistance( 20 )
+		sound1.setRefDistance( 15 )
 		sound1.play();	
 	} );
 	cube1.add( sound1 );
@@ -133,8 +133,8 @@ function firstWorld() {
 
 		sound2.setBuffer( buffer );
 		sound2.setLoop( true );
-		sound2.setRefDistance( 5 );
-		sound2.setVolume(1);
+		sound2.setRefDistance( 15 );
+		sound2.setVolume( 1.5 );
 		sound2.play();
 
 	} );
@@ -149,8 +149,8 @@ function firstWorld() {
 
 		sound3.setBuffer( buffer );
 		sound3.setLoop( true );
-		sound3.setRefDistance( 5 );
-		sound3.setVolume(1);
+		sound3.setRefDistance( 15 );
+		sound3.setVolume(1.5);
 		sound3.play();
 
 	} );
@@ -165,8 +165,8 @@ function firstWorld() {
 
 		sound4.setBuffer( buffer );
 		sound4.setLoop( true );
-		sound4.setRefDistance( 5 );
-		sound4.setVolume(1);
+		sound4.setRefDistance( 15 );
+		sound4.setVolume( 1.5 );
 		sound4.play();
 
 	} );
@@ -181,8 +181,8 @@ function firstWorld() {
 
 		sound5.setBuffer( buffer );
 		sound5.setLoop( true );
-		sound5.setRefDistance( 5 );
-		sound5.setVolume(1);
+		sound5.setRefDistance( 15 );
+		sound5.setVolume( 1.5 );
 		sound5.play();
 
 	} );
