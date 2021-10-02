@@ -1,5 +1,4 @@
 import * as THREE from './THREEJS/three.module.js';
-
 import { FirstPersonControls } from './THREEJS/FirstPersonControls.js';
 
 let camera, controls, scene, renderer;
@@ -32,7 +31,7 @@ function firstWorld() {
 	camera.add( listener );
 
 	scene = new THREE.Scene();
-
+	//scene.background = new THREE.Color(0x161616);
 	const loader = new THREE.TextureLoader();
     loader.load("img/textures/backgraund.jpg",function(texture){
       scene.background = texture;
@@ -53,7 +52,7 @@ function firstWorld() {
 	}));
 	const skyMaterial = new THREE.MeshFaceMaterial( materialArray );
 
-	const imagePrefix2 = "img/scenario_02/ext-julia_";	
+	const imagePrefix2 = "img/scenario_02/julia_";	
 	const directions2  = ["bk", "ft", "up", "dn", "lf", "rt"];
 	const imageSuffix2 = ".png";
 

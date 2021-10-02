@@ -1,0 +1,217 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	width: 100%;
+	height: 100vh;
+	box-sizing: border-box;
+	/*background: #c5c0b2;*/
+	background: #f5ecec;
+	overflow: hidden;
+}
+
+.cursor {
+    position: absolute;
+    background: #337e67;
+    width: 30px;
+    height: 30px;
+    /*border-radius: 100%;*/
+    z-index: 1;
+    transition: 0.5s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform,
+        0.2s cubic-bezier(0.75, -1.27, 0.3, 2.33) opacity;
+    user-select: none;
+    pointer-events: none;
+    transform: scale(0.8);
+}
+.cursor-follower {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    width: 50px;
+    height: 50px;
+    z-index: 1;
+    transition: 0.6s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform,
+        0.4s cubic-bezier(0.75, -1.27, 0.3, 2.33) opacity;
+    user-select: none;
+    pointer-events: none;
+    transform: translate(4px, 4px);
+}
+
+.container-items {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 300px;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.item {
+	position: relative;
+	flex-grow: 1;
+	font-family: "Mak";
+	font-size: 220px;
+	transition: all 300ms ease-in-out;
+}
+
+.item:hover {
+	flex-grow: 2;
+	font-size: 400px;
+}
+
+.item button{
+	font-family: "Mak";
+	font-size: 220px;
+	transition: all 300ms ease-in-out;
+
+}
+
+h3 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #93aa90;
+}
+
+h3:hover{
+	color: #337e67;
+}
+
+img {
+	width: 100%;
+}
+
+.container-img-wrap {
+	position: absolute;
+	top: -60rem;
+	left: -80px;
+	width: 400px;
+	height: 500px;
+	overflow: hidden;
+	pointer-events: none;
+	visibility: hidden;
+}
+
+.container-img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+}
+
+.site-logo {
+	position: fixed;
+	color: #161616;
+	left: 50%;
+	transform: translateX(-50%);
+	font-family: 'Mak';
+	font-size: 24px;
+	line-height: 100px;
+	text-transform: uppercase;
+}
+
+.site-info{
+	color: #337e67;
+	background: transparent;
+}
+
+.close-button{
+	z-index: 2;
+	background: rgba(0,0,0,0);
+	opacity:0.9;
+	position: absolute; 
+	top: 5px;
+	right:5px;
+}
+
+
+.close-button button{
+	background: transparent;
+	border: none;
+}
+
+.navbar {
+	position: fixed;
+	width: 100%;
+	height: 100px;
+	padding: 0 40px;
+	display: flex;
+	justify-content: space-between;
+	font-family: Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	line-height: 100px;
+}
+
+.site-menu {
+	display: flex;
+}
+
+.menu-item {
+	margin-left: 60px;
+	color: #161616;
+}
+
+.menu-item:hover{
+	background: #93aa90;
+	color: #161616;
+	transition: 0.3s;
+}
+
+
+.header {
+	position: absolute;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	top: 20%;
+	padding: 40px;
+	color: #337e67;
+	text-transform: uppercase;
+	font-family: "Mak";
+	font-size: 40px;
+	z-index: 2;
+}
+
+.header-left span {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.link {
+	position: absolute;
+	font-size: 16px;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.link button {
+	font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+	background-color: #c5c0b2;
+    color: #161616;
+    border: 1px solid #161616;
+    padding: 24px 40px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 10px;
+    transition: 0.3s;
+}
+
+.link button:hover{
+	background: #93aa90;
+	color: #161616;
+	border: 1px solid #f5ecec;
+	transition: 0.3s;
+}
